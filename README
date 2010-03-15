@@ -1,0 +1,21 @@
+Usage:
+
+<?php
+
+  // The bootstrap...
+
+  Doctrine_Core::setExtensionsPath('/path/to/doctrine_extensions');
+
+  Doctrine_Manager::getInstance()
+    ->registerExtension('HasFile');
+
+?>
+
+# schema.yml
+
+Product:
+  columns:
+    name: string(255)
+    price: decimal(10)
+  actAs:
+    HasFile: ~

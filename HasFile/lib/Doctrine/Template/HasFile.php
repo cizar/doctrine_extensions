@@ -81,9 +81,14 @@ class Doctrine_Template_HasFile extends Doctrine_Template
 	 */
 	public function assignFile($file)
 	{
-		if ($file['error'])
+		if (!$file)
 		{
-			throw new Doctrine_Record_Exception('Can not assign the uploaded file because it contains errors');
+			throw new Doctrine_Record_Exception('No file to assign');
+		}
+			
+		if ($file['error'] != UPLOAD_ERR_OK)
+		{
+			throw new Doctrine_Record_Exception('Can not assign the uploaded file because it contains an error');
 		}
 
 		$filename = $file['name'];
